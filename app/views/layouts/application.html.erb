@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ForumPrj</title>
+  <title>YakuShou's Forum Project</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+<div>
+  <% if flash[:notice].present? %>
+    <%= flash[:notice] %>
+  <% end %>
+</div>
+<div>
+  <% if flash[:alert].present? %>
+    <%= flash[:alert] %>
+  <% end %>
+</div>
 
 <%= yield %>
 

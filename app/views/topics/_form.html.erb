@@ -1,0 +1,16 @@
+<% if @topic.errors.any? %>
+  <ul>
+    <% @topic.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div>
+  <%= f.label :title, "Title" %>
+  <%= f.text_field :title %>
+</div>
+<div>
+  <%= f.label :content, "Content" %>
+  <%= f.text_area :content %>
+</div>
