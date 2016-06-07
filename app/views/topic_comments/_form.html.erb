@@ -1,0 +1,12 @@
+<% if @comment.errors.any? %>
+  <ul>
+    <% @comment.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div>
+  <%= f.label :content, "Content" %>
+  <%= f.text_area :content %>
+</div>

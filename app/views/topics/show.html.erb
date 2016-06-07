@@ -5,9 +5,17 @@
   Conetent : <%= @topic.content %>
 </div>
 
+<%= link_to "New Comment", new_topic_comment_path(@topic) %>
+<table>
+  <% @topic.comments.each do |comment| %>
+    <tr>
+      <td><%= comment.content %></td>
+      <td><%= link_to "edit", edit_topic_comment_path(@topic, comment) %></td>
+      <td><%= link_to "delete", topic_comment_path(@topic, comment), :method => :delete, :data => {:confirm => "Are you sure ?"} %></td>
+    </tr>
+  <% end %>
+</table>
+
+
 <%= link_to "Back to Topics", topics_path %>
-
-
-
-
 
