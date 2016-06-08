@@ -1,5 +1,6 @@
 class TopicsController < ApplicationController
 
+  before_action :authenticate_user!, :except => [:index]
   before_action :set_topic, :only => [:show, :edit, :update, :destroy]
 
   def index
@@ -23,6 +24,7 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.new(topic_params)
+    @topic.user = current_user
     if @topic.save
       flash[:notice] = "create success"
       redirect_to topics_path
