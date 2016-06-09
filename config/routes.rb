@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
   resources :topics do
     resources :comments, :controller => "topic_comments"
+
+    collection do
+      get :about
+    end
   end
 
   root 'topics#index'

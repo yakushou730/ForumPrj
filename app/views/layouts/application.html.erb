@@ -19,6 +19,10 @@
   <% end %>
 </div>
 
+<div>
+  <%= link_to "About", about_topics_path %>
+</div>
+
 <% if current_user %>
   <%= link_to "Log out", destroy_user_session_path, :method => :delete %> |
   <%= link_to "Modify information", edit_registration_path(:user) %>

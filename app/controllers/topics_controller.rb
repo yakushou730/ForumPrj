@@ -47,6 +47,12 @@ class TopicsController < ApplicationController
 
   end
 
+  def about
+    @users = User.all
+    @topics = Topic.all
+    @comments = Comment.all
+  end
+
   protected
 
   def set_topic
