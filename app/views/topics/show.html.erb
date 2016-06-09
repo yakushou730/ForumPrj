@@ -5,6 +5,12 @@
   Conetent : <%= @topic.content %>
 </div>
 
+<ul>
+  <% @topic.categories.each do |category| %>
+  <li><%= category.name %></li>
+  <% end %>
+</ul>
+
 <%= link_to "New Comment", new_topic_comment_path(@topic) %>
 <table>
   <% @topic.comments.each do |comment| %>

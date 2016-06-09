@@ -10,6 +10,11 @@
   <%= f.label :title, "Title" %>
   <%= f.text_field :title %>
 </div>
+
+<div>
+  <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
+</div>
+
 <div>
   <%= f.label :content, "Content" %>
   <%= f.text_area :content %>

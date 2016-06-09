@@ -54,6 +54,6 @@ class TopicsController < ApplicationController
   end
 
   def topic_params
-    params.require(:topic).permit(:title, :content, :clicked)
+    params.require(:topic).permit(:title, :content, :clicked, :category_ids => [])
   end
 end
