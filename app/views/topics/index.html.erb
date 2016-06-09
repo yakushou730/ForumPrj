@@ -8,8 +8,14 @@
       <td><%= link_to topic.title, topic_path(topic) %></td>
       <td><%= topic.user.try(:short_name) %></td>
       <td><%= topic.clicked %></td>
-      <td><%#= topic.comments.count %></td>
-      <td><%#= topic.comments.last.updated_at %></td>
+      <td><%= topic.comments.count %></td>
+      <td>
+        <% if topic.comments.count > 0 %>
+          <%= topic.comments.last.updated_at %>
+        <% else %>
+          No Comments
+        <% end %>
+      </td>
       <td><%= link_to "Edit", edit_topic_path(topic) %></td>
       <td><%= link_to "Delete", topic_path(topic), :method => :delete, :data => {:confirm => "Are you sure ?"} %></td>
     </tr>
