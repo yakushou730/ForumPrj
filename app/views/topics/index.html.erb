@@ -3,6 +3,13 @@
 <%= link_to "New Topic", new_topic_path %>
 
 <table>
+  <tr>
+    <td>Topic</td>
+    <td>User</td>
+    <td>Clicks</td>
+    <td>Comments</td>
+    <td>last comment time</td>
+  </tr>
   <% @topics.each do |topic| %>
     <tr>
       <td><%= link_to topic.title, topic_path(topic) %></td>
