@@ -12,6 +12,8 @@ class TopicCommentsController < ApplicationController
   def create
     @comment = @topic.comments.new(comment_param)
     if @comment.save
+      @topic.comment_last_updated_at = @comment.updated_at
+      @topic.save
       flash[:notice] = "create success"
       redirect_to topic_path(@topic)
     else
@@ -28,6 +30,8 @@ class TopicCommentsController < ApplicationController
     @comment = @topic.comments.find(params[:id])
 
     if @comment.update(comment_param)
+      @topic.comment_last_updated_at = @comment.updated_at
+      @topic.save
       flash[:notice] = "update success"
       redirect_to topic_path(@topic)
     else
@@ -40,6 +44,14 @@ class TopicCommentsController < ApplicationController
     @comment = @topic.comments.find(params[:id])
 
     @comment.destroy
+
+    if @topic.comments_count > 1
+      # 1要砍成0，但在此時暫存還是1
+      @topic.comment_last_updated_at = Comment.order("updated_at").last.updated_at
+    else
+      @topic.comment_last_updated_at = nil
+    end
+    @topic.save
 
     flash[:alert] = "delete success"
 

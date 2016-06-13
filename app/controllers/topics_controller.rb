@@ -4,12 +4,28 @@ class TopicsController < ApplicationController
   before_action :set_topic, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @topics = Topic.all
+
+    # 目前預設排序為文章update時間
+    @topics = Topic.all.order("updated_at desc")
+    #@topics = Topic.all.order("comment_last_updated_at desc")
+
+    if params[:order] && params[:order] == "last_comment_time"
+      # Need to order by last comment time
+      # @topics = @topics.order("")
+    elsif params[:order] && params[:order] == "comment_number"
+      # Need to order by most comment number
+      # @topics = @topics.order("")
+    end
+
+    @category = Category.all
+
   end
 
   def show
     @topic.clicked += 1
     @topic.save
+
+    @comments = @topic.comments.order("updated_at desc")
   end
 
   def destroy

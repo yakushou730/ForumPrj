@@ -1,6 +1,14 @@
 <h1>YakuShou's Forum Project</h1>
 
+<%# Category sort %>
+<%#= form_for @category, :url => topics_path, :method => :post %>
+
+
+<%# end %>
+
 <%= link_to "New Topic", new_topic_path %>
+<%= link_to "<Sort>Last comment time", topics_path(:order => "last_comment_time") %>
+<%= link_to "<Sort>Comment Number", topics_path(:order => "comment_number") %>
 
 <table>
   <tr>
@@ -15,14 +23,16 @@
       <td><%= link_to topic.title, topic_path(topic) %></td>
       <td><%= topic.user.try(:short_name) %></td>
       <td><%= topic.clicked %></td>
-      <td><%= topic.comments.count %></td>
+
+      <td><%= topic.comments_count %></td>
       <td>
-        <% if topic.comments.count > 0 %>
-          <%= topic.comments.last.updated_at %>
+        <% if topic.comments_count != 0 %>
+          <%= topic.updated_at %>
         <% else %>
           No Comments
         <% end %>
       </td>
+
       <td><%= link_to "Edit", edit_topic_path(topic) %></td>
       <td><%= link_to "Delete", topic_path(topic), :method => :delete, :data => {:confirm => "Are you sure ?"} %></td>
     </tr>
