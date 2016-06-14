@@ -44,9 +44,15 @@ class TopicsController < ApplicationController
   end
 
   def destroy
-    @topic.destroy
-    flash[:alert] = "delete success"
-    redirect_to topics_path
+    if @topic.user != current_user
+      flash[:alert] = "you cannot DESTROY others' topics"
+      redirect_to topics_path
+    else
+      @topic.destroy
+      flash[:alert] = "delete success"
+      redirect_to topics_path
+    end
+
   end
 
   def new
@@ -65,7 +71,10 @@ class TopicsController < ApplicationController
   end
 
   def edit
-
+    if @topic.user != current_user
+      flash[:alert] = "you cannot EDIT others' topics"
+      redirect_to topics_path
+    end
   end
 
   def update
