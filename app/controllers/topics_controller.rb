@@ -28,6 +28,8 @@ class TopicsController < ApplicationController
       @topics = Topic.all.order("comments_count desc")
     end
 
+    params_for_page
+
     @categories = Category.all
 
   end
@@ -88,5 +90,9 @@ class TopicsController < ApplicationController
 
   def topic_params
     params.require(:topic).permit(:title, :content, :clicked, :category_ids => [])
+  end
+
+  def params_for_page
+    @topics = @topics.page(params[:page]).per(5)
   end
 end
