@@ -20,12 +20,14 @@ class TopicsController < ApplicationController
       #@topics = Topic.all.order("comment_last_updated_at desc")
     end
 
-    if params[:order] && params[:order] == "last_comment_time"
-      # Need to order by last comment time
-      @topics = Topic.all.order("comment_last_updated_at desc")
-    elsif params[:order] && params[:order] == "comment_number"
-      # Need to order by most comment number
-      @topics = Topic.all.order("comments_count desc")
+    if params[:order]
+      if params[:order] == "last_comment_time"
+        @topics = Topic.all.order("comment_last_updated_at desc")
+      elsif params[:order] && params[:order] == "comment_number"
+        @topics = Topic.all.order("comments_count desc")
+      elsif params[:order] && params[:order] == "topic_clicks"
+        @topics = Topic.all.order("clicked desc")
+      end
     end
 
     params_for_page
