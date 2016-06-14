@@ -5,9 +5,20 @@ class TopicsController < ApplicationController
 
   def index
 
-    # 目前預設排序為文章update時間
-    @topics = Topic.all.order("updated_at desc")
-    #@topics = Topic.all.order("comment_last_updated_at desc")
+    # 依照分類篩選文章(預留)
+    if params[:sort] && params[:sort] == "sports"
+      @topics = Category.find_by(:name => "Sports").topics
+    elsif params[:sort] && params[:sort] == "boardgame"
+      @topics = Category.find_by(:name => "BoardGame").topics
+    elsif params[:sort] && params[:sort] == "love"
+      @topics = Category.find_by(:name => "Love").topics
+    elsif params[:sort] && params[:sort] == "action"
+      @topics = Category.find_by(:name => "Action").topics
+    else
+      # 目前預設排序為文章update時間
+      @topics = Topic.all #.order("updated_at desc")
+      #@topics = Topic.all.order("comment_last_updated_at desc")
+    end
 
     if params[:order] && params[:order] == "last_comment_time"
       # Need to order by last comment time
@@ -17,7 +28,7 @@ class TopicsController < ApplicationController
       @topics = Topic.all.order("comments_count desc")
     end
 
-    @category = Category.all
+    @categories = Category.all
 
   end
 

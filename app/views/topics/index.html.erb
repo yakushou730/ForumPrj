@@ -1,10 +1,16 @@
 <h1>YakuShou's Forum Project</h1>
 
 <%# Category sort %>
-<%#= form_for @category, :url => topics_path, :method => :post %>
-
-
+<%#= form_for @categories, :url => topics_path, :method => :post do |f| %>
 <%# end %>
+<%= link_to "<Sort>Sports", topics_path(:sort => "sports") %>
+<%= link_to "<Sort>BoardGame", topics_path(:sort => "boardgame") %>
+<%= link_to "<Sort>Love", topics_path(:sort => "love") %>
+<%= link_to "<Sort>Action", topics_path(:sort => "action") %>
+<%= link_to "<Sort>None", topics_path %>
+
+
+<hr>
 
 <%= link_to "New Topic", new_topic_path %>
 <%= link_to "<Order>Last comment time", topics_path(:order => "last_comment_time") %>
