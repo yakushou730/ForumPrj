@@ -13,9 +13,14 @@
 
 <%= link_to "New Comment", new_topic_comment_path(@topic) %>
 <table>
+  <tr>
+    <td>Comment</td>
+    <td>User</td>
+  </tr>
   <% @comments.each do |comment| %>
     <tr>
       <td><%= comment.content %></td>
+      <td><%= comment.user.try(:short_name) %></td>
       <td><%= link_to "edit", edit_topic_comment_path(@topic, comment) %></td>
       <td><%= link_to "delete", topic_comment_path(@topic, comment), :method => :delete, :data => {:confirm => "Are you sure ?"} %></td>
     </tr>

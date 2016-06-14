@@ -11,6 +11,7 @@ class TopicCommentsController < ApplicationController
 
   def create
     @comment = @topic.comments.new(comment_param)
+    @comment.user = current_user
     if @comment.save
       @topic.comment_last_updated_at = @comment.updated_at
       @topic.save
