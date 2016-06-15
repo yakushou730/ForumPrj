@@ -67,7 +67,7 @@ class TopicCommentsController < ApplicationController
   end
 
   def comment_param
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content, :status)
   end
 
 

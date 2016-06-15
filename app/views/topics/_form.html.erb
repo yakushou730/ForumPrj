@@ -19,3 +19,8 @@
   <%= f.label :content, "Content" %>
   <%= f.text_area :content %>
 </div>
+
+<div>
+  <%= f.label :status, "Status" %>
+  <%= f.select :status, [["draft","draft"],["release","release"]] %>
+</div>
