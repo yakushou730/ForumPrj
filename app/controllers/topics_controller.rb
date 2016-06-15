@@ -20,6 +20,15 @@ class TopicsController < ApplicationController
       #@topics = Topic.all.order("comment_last_updated_at desc")
     end
 
+    # 隱藏不是自己的draft文章
+    if current_user.nil?
+      @topics = @topics.where(:status => "release")
+    else
+      @topics = @topics.where("user_id = ? or status = ?", current_user.id, "release")
+    end
+
+
+
     if params[:order]
       if params[:order] == "last_comment_time"
         @topics = Topic.all.order("comment_last_updated_at desc")
@@ -40,7 +49,14 @@ class TopicsController < ApplicationController
     @topic.clicked += 1
     @topic.save
 
-    @comments = @topic.comments.order("updated_at desc")
+
+
+    # 隱藏不是自己的draft評論
+    if current_user.nil?
+      @comments = @topic.comments.where(:status => "release").order("updated_at desc")
+    else
+      @comments = @topic.comments.where("user_id = ? or status = ?", current_user.id, "release").order("updated_at desc")
+    end
   end
 
   def destroy
