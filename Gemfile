@@ -35,6 +35,7 @@ gem 'pg', group: :production
 gem 'rails_12factor', group: :production
 gem 'bootstrap-sass', '~> 3.3.4'
 gem 'devise'
+gem 'gravtastic'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

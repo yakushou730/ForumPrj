@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+
+  include Gravtastic
+  gravtastic
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -10,4 +14,5 @@ class User < ActiveRecord::Base
   def short_name
     self.email.split("@").first
   end
+
 end
