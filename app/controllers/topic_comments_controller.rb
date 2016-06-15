@@ -23,7 +23,14 @@ class TopicCommentsController < ApplicationController
   end
 
   def edit
-    @comment = @topic.comments.find(params[:id])
+
+    if @topic.user != current_user
+      flash[:alert] = "you cannot EDIT others' comments"
+      redirect_to topic_path(@topic)
+    else
+      @comment = @topic.comments.find(params[:id])
+    end
+
   end
 
   def update
@@ -42,21 +49,30 @@ class TopicCommentsController < ApplicationController
 
   def destroy
 
-    @comment = @topic.comments.find(params[:id])
+    if @topic.user != current_user
 
-    @comment.destroy
+      flash[:alert] = "you cannot DESTROY others' comments"
 
-    if @topic.comments_count > 1
-      # 1要砍成0，但在此時暫存還是1
-      @topic.comment_last_updated_at = Comment.order("updated_at").last.updated_at
+      redirect_to topic_path(@topic)
+
     else
-      @topic.comment_last_updated_at = nil
+
+      @comment = @topic.comments.find(params[:id])
+
+      @comment.destroy
+
+      if @topic.comments_count > 1
+        # 1要砍成0，但在此時暫存還是1
+        @topic.comment_last_updated_at = Comment.order("updated_at").last.updated_at
+      else
+        @topic.comment_last_updated_at = nil
+      end
+      @topic.save
+
+      flash[:alert] = "delete success"
+
+      redirect_to topic_path(@topic)
     end
-    @topic.save
-
-    flash[:alert] = "delete success"
-
-    redirect_to topic_path(@topic)
 
   end
 
