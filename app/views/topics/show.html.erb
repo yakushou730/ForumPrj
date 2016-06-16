@@ -11,6 +11,16 @@
   <% end %>
 </ul>
 
+<% if @is_favorite %>
+  <%= link_to "not favorite", favorite_topic_path(@topic, :favorite => false) %>
+<% else %>
+  <%= link_to "favorite", favorite_topic_path(@topic, :favorite => true) %>
+<% end %>
+
+
+
+<br>
+
 <%= link_to "New Comment", new_topic_comment_path(@topic) %>
 <table>
   <tr>

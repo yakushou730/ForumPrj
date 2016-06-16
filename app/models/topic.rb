@@ -6,4 +6,7 @@ class Topic < ActiveRecord::Base
 
   has_many :topic_category_relationships
   has_many :categories, :through => :topic_category_relationships
+
+  has_many :user_topic_favorites
+  has_many :users, :through => :user_topic_favorites
 end

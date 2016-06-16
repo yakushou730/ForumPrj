@@ -6,6 +6,4 @@ class ProfilesController < ApplicationController
     @comments = Comment.where("user_id = #{params[:id]}")
   end
 
-
-
 end

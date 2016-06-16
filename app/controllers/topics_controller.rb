@@ -49,14 +49,15 @@ class TopicsController < ApplicationController
     @topic.clicked += 1
     @topic.save
 
-
-
     # 隱藏不是自己的draft評論
     if current_user.nil?
       @comments = @topic.comments.where(:status => "release").order("updated_at desc")
     else
       @comments = @topic.comments.where("user_id = ? or status = ?", current_user.id, "release").order("updated_at desc")
     end
+
+    # 讀取這篇文章是否已經被此使用者收藏
+    @is_favorite = UserTopicFavorite.where(:user_id => current_user.id, :topic_id => @topic.id).count == 0 ? false : true
   end
 
   def destroy
@@ -107,6 +108,15 @@ class TopicsController < ApplicationController
     @users = User.all
     @topics = Topic.all
     @comments = Comment.all
+  end
+
+  def favorite
+    if params[:favorite] == "true"
+      UserTopicFavorite.create(:user_id => current_user.id, :topic_id => params[:id])
+    else
+      UserTopicFavorite.find_by(:user_id => current_user.id, :topic_id => params[:id]).destroy
+    end
+    redirect_to topic_path(params[:id])
   end
 
   protected
