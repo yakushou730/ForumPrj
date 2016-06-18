@@ -27,4 +27,14 @@
   <% end %>
 </ul>
 
+<h2>This user's favorite topics</h2>
+
+<ul>
+  <% @favorites.each do |favorite| %>
+    <li>
+      <%= link_to favorite.title, topic_path(favorite) %>
+    </li>
+  <% end %>
+</ul>
+
 <%= link_to "back to index", topics_path %>
