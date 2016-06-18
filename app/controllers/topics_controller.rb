@@ -61,7 +61,7 @@ class TopicsController < ApplicationController
   end
 
   def destroy
-    if @topic.user != current_user
+    if @topic.user != current_user && current_user != "admin"
       flash[:alert] = "you cannot DESTROY others' topics"
       redirect_to topics_path
     else
