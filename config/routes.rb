@@ -15,6 +15,10 @@ Rails.application.routes.draw do
 
   end
 
+  namespace :admin do
+    resources :topics
+  end
+
   get '/profile/:id' => 'profiles#info', :as => "profile_info"
 
   root 'topics#index'

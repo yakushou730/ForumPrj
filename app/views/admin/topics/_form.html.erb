@@ -1,0 +1,15 @@
+<!-- show error messages -->
+<% if @category.errors.any? %>
+  <ul>
+    <% @category.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<table>
+  <tr>
+    <td><%= f.label :name, "Name" %></td>
+    <td><%= f.text_field :name %></td>
+  </tr>
+</table>

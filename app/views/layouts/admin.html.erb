@@ -8,6 +8,7 @@
 </head>
 <body>
 
+<h1>Admin Interface</h1>
 <div>
   <% if flash[:notice].present? %>
     <%= flash[:notice] %>
@@ -21,11 +22,6 @@
 
 <div>
   <%= link_to "About", about_topics_path %>
-</div>
-<div>
-  <% if current_user && current_user.admin? %>
-    <%= link_to "Admin", admin_topics_path %>
-  <% end %>
 </div>
 
 <% if current_user %>
