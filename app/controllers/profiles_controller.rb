@@ -1,5 +1,7 @@
 class ProfilesController < ApplicationController
 
+  before_action :set_topic, :only => [:edit, :update]
+
   def info
     @profile = User.find(params[:id])
     @topics = Topic.where("user_id = #{params[:id]}")
@@ -13,16 +15,32 @@ class ProfilesController < ApplicationController
       @favorites << Topic.find(favorite_topic.topic_id)
     end
 
-    # favorite_topics.each do |t|
-    #   favorite_topic_ids << t.topic_id
-    # end
+  end
 
-    # @user_favorite_topics = []
-
-    # favorite_topic_ids.each do |id|
-    #   @user_favorite_topics << Topic.find(id)
-    # end
+  def edit
 
   end
+
+  def update
+
+    if @profile.update(profile_params)
+      flash[:notice] = "update success"
+      redirect_to admin_topics_path
+    else
+      render "edit"
+    end
+  end
+
+  protected
+
+  def set_topic
+    @profile = User.find(params[:id])
+  end
+
+  def profile_params
+    params.require(:user).permit(:bio)
+  end
+
+
 
 end

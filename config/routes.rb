@@ -19,7 +19,16 @@ Rails.application.routes.draw do
     resources :topics
   end
 
-  get '/profile/:id' => 'profiles#info', :as => "profile_info"
+  resources :profiles do
+    member do
+      get :info
+    end
+
+  end
+
+  #get '/profile/:id' => 'profiles#info', :as => "profile_info"
+  #get 'edit/:id' => 'profiles#edit', :as => "profile_edit"
+  #get 'update/:id'
 
   root 'topics#index'
   # The priority is based upon order of creation: first created -> highest priority.

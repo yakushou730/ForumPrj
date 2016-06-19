@@ -1,11 +1,6 @@
-<h2>Topic Categoeries</h2>
+<h2>Categoeries</h2>
 
 <table>
-  <tr>
-    <td>
-      <h3>Name</h3>
-    </td>
-  </tr>
   <% @categories.each do |category| %>
     <tr>
       <td>
@@ -13,6 +8,17 @@
       </td>
     </tr>
   <% end %>
+</table>
 
+<h2>Users</h2>
+
+<table>
+  <% @users.each do |user| %>
+    <tr>
+      <td>
+        <%= link_to user.short_name, edit_profile_path(user) %>
+      </td>
+    </tr>
+  <% end %>
 
 </table>

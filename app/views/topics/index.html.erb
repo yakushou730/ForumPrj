@@ -28,7 +28,7 @@
   <% @topics.each do |topic| %>
     <tr>
       <td><%= link_to topic.title, topic_path(topic) %></td>
-      <td><%= link_to topic.user.try(:short_name), profile_info_path(:id => topic.user.id) %></td>
+      <td><%= link_to topic.user.try(:short_name), info_profile_path(:id => topic.user.id) %></td>
       <td><%= topic.clicked %></td>
 
       <td><%= topic.comments_count %></td>

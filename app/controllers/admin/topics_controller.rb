@@ -6,14 +6,16 @@ class Admin::TopicsController < ApplicationController
   layout "admin"
 
   def index
-    @toics = Topic.all
     @categories = Category.all
+    @users = User.all
 
     if params[:cid]
       @category = Category.find(params[:cid])
     else
       @category = Category.new
     end
+
+
   end
 
 
