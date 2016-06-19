@@ -1,0 +1,9 @@
+<%= form_for @category, :url => admin_category_path(@category) do |f| %>
+
+  <%= render :partial => "form", :locals => {:f => f} %>
+
+  <%= f.submit "Update" %>
+
+<% end %>
+
+<%= link_to "Back to admin", admin_topics_path %>

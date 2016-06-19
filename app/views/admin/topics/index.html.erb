@@ -1,10 +1,19 @@
+<p><%= link_to "leave admin interface", topics_path %></p>
+
 <h2>Categoeries</h2>
 
+<%= link_to "new", new_admin_category_path %>
 <table>
   <% @categories.each do |category| %>
     <tr>
       <td>
         <%= category.name %>
+      </td>
+      <td>
+        <%= link_to "edit", edit_admin_category_path(category)  %>
+      </td>
+      <td>
+        <%= link_to "delete", admin_category_path(category), :method => :delete, :data => {:confirm => "Are you sure ?"} %>
       </td>
     </tr>
   <% end %>
