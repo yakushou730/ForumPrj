@@ -13,6 +13,11 @@
     <%= f.text_area :bio %>
   </div>
 
+  <div class="field">
+    <%= f.label :role %>
+    <%= f.select :role, [["Normal", "normal"], ["Admin", "admin"]], :class => "form-control" %>
+  </div>
+
   <div>
     <%= f.submit "Update" %>
   </div>
