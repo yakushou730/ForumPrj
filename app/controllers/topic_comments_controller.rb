@@ -24,11 +24,10 @@ class TopicCommentsController < ApplicationController
 
   def edit
 
-    if @topic.user != current_user
+    @comment = @topic.comments.find(params[:id])
+    if @comment.user != current_user
       flash[:alert] = "you cannot EDIT others' comments"
       redirect_to topic_path(@topic)
-    else
-      @comment = @topic.comments.find(params[:id])
     end
 
   end
