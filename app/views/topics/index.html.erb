@@ -1,29 +1,32 @@
-<h1>YakuShou's Forum Project</h1>
+<h1>Shou's Forum Project</h1>
 
 <%# Category sort %>
 <%#= form_for @categories, :url => topics_path, :method => :post do |f| %>
 <%# end %>
-<%= link_to "<Sort>Sports", topics_path(:sort => "sports") %>
-<%= link_to "<Sort>BoardGame", topics_path(:sort => "boardgame") %>
-<%= link_to "<Sort>Love", topics_path(:sort => "love") %>
-<%= link_to "<Sort>Action", topics_path(:sort => "action") %>
-<%= link_to "<Sort>None", topics_path %>
+<%= link_to "<Sort>Sports", topics_path(:sort => "sports"), :class => "btn btn-info" %>
+<%= link_to "<Sort>BoardGame", topics_path(:sort => "boardgame"), :class => "btn btn-info" %>
+<%= link_to "<Sort>Love", topics_path(:sort => "love"), :class => "btn btn-info" %>
+<%= link_to "<Sort>Action", topics_path(:sort => "action"), :class => "btn btn-info" %>
+<%= link_to "<Sort>None", topics_path, :class => "btn btn-info" %>
 
 
 <hr>
 
-<%= link_to "New Topic", new_topic_path %>
-<%= link_to "<Order>Last comment time", topics_path(:order => "last_comment_time") %>
-<%= link_to "<Order>Comment Number", topics_path(:order => "comment_number") %>
-<%= link_to "<Order>clicks", topics_path(:order => "topic_clicks") %>
+<%= link_to "New Topic", new_topic_path, :class => "btn btn-primary" %>
+<%= link_to "<Order>Last comment time", topics_path(:order => "last_comment_time"), :class => "btn btn-warning" %>
+<%= link_to "<Order>Comment Number", topics_path(:order => "comment_number"), :class => "btn btn-warning" %>
+<%= link_to "<Order>clicks", topics_path(:order => "topic_clicks"), :class => "btn btn-warning" %>
 
-<table>
+<table class="table">
   <tr>
     <td>Topic</td>
     <td>User</td>
     <td>Clicks</td>
     <td>Comments</td>
     <td>last comment time</td>
+    <td></td>
+    <td></td>
+    <td>Comments' involved user</td>
   </tr>
   <% @topics.each do |topic| %>
     <tr>
@@ -40,12 +43,10 @@
         <% end %>
       </td>
 
-      <td><%= link_to "Edit", edit_topic_path(topic) %></td>
-      <td><%= link_to "Delete", topic_path(topic), :method => :delete, :data => {:confirm => "Are you sure ?"} %></td>
+      <td><%= link_to "Edit", edit_topic_path(topic), :class => "btn btn-default" %></td>
+      <td><%= link_to "Delete", topic_path(topic), :method => :delete, :data => {:confirm => "Are you sure ?"}, :class => "btn btn-default" %></td>
       <td>
-        <% topic.comments.each do |comment| %>
-          <%= comment.user.short_name %>
-        <% end %>
+        <%= @short_names["#{topic.id}"] %>
       </td>
     </tr>
   <% end %>

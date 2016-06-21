@@ -12,9 +12,9 @@
 </ul>
 
 <% if @is_favorite %>
-  <%= link_to "not favorite", favorite_topic_path(@topic, :favorite => false) %>
+  <%= link_to "already favorite", favorite_topic_path(@topic, :favorite => false), :class => "btn btn-success" %>
 <% else %>
-  <%= link_to "favorite", favorite_topic_path(@topic, :favorite => true) %>
+  <%= link_to "favorite", favorite_topic_path(@topic, :favorite => true), :class=> "btn btn-default" %>
 <% end %>
 
 <br>
@@ -22,11 +22,13 @@
 
 <br>
 
-<%= link_to "New Comment", new_topic_comment_path(@topic) %>
-<table>
+<%= link_to "New Comment", new_topic_comment_path(@topic), :class => "btn btn-primary" %>
+<table class="table">
   <tr>
     <td>Comment</td>
     <td>User</td>
+    <td></td>
+    <td></td>
   </tr>
   <% @comments.each do |comment| %>
     <tr>

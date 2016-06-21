@@ -16,7 +16,7 @@ class TopicsController < ApplicationController
       @topics = Category.find_by(:name => "Action").topics
     else
       # 目前預設排序為文章update時間
-      @topics = Topic.all #.order("updated_at desc")
+      @topics = Topic.includes(:comments => :user).all #.order("updated_at desc")
       #@topics = Topic.all.order("comment_last_updated_at desc")
     end
 
@@ -26,8 +26,13 @@ class TopicsController < ApplicationController
     else
       @topics = @topics.where("user_id = ? or status = ?", current_user.id, "release")
     end
-
-
+    @short_names = {}
+    @topics.each do |topic|
+      @short_names["#{topic.id}"] =
+        topic.comments.map do |comment|
+          comment.user.short_name
+        end.uniq
+    end
 
     if params[:order]
       if params[:order] == "last_comment_time"
