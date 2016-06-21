@@ -18,8 +18,7 @@
 <% end %>
 
 <br>
-<div class="fb-like" data-href=<%= topic_url(@topic) %> data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-
+<iframe src="https://www.facebook.com/plugins/like.php?href=<%= topic_url(@topic) %>&width=450&layout=standard&action=like&show_faces=true&share=true&height=80&appId=289617371382624" width="450" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 <br>
 
 <%= link_to "New Comment", new_topic_comment_path(@topic), :class => "btn btn-primary" %>
