@@ -10,7 +10,10 @@ Rails.application.routes.draw do
     end
 
     member do
-      get :favorite
+      post :favorite
+      post :unfavorite
+      # TODO 4
+      # Separate favorite / unfavorite action
     end
 
   end

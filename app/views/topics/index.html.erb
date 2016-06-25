@@ -36,7 +36,7 @@
 
       <td><%= topic.comments_count %></td>
       <td>
-        <% if topic.comments_count != 0 %>
+        <% if topic.has_comment? %>
           <%= topic.updated_at %>
         <% else %>
           No Comments
@@ -46,7 +46,8 @@
       <td><%= link_to "Edit", edit_topic_path(topic), :class => "btn btn-default" %></td>
       <td><%= link_to "Delete", topic_path(topic), :method => :delete, :data => {:confirm => "Are you sure ?"}, :class => "btn btn-default" %></td>
       <td>
-        <%= @short_names["#{topic.id}"] %>
+        <%= make_user_profile_links @short_names["#{topic.id}"] %>
+        <% # TODO1 define a method in helper to let @short_names can have links to user profile %>
       </td>
     </tr>
   <% end %>

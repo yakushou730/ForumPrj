@@ -30,9 +30,17 @@ class TopicsController < ApplicationController
     @topics.each do |topic|
       @short_names["#{topic.id}"] =
         topic.comments.map do |comment|
-          comment.user.short_name
+         { comment.user.id => comment.user.short_name }
         end.uniq
     end
+
+byebug
+    # @topics.each do |topic|
+    #   @short_names["#{topic.id}"] =
+    #     topic.comments.map do |comment|
+    #       comment.user.short_name
+    #     end.uniq
+    # end
 
     if params[:order]
       if params[:order] == "last_comment_time"
@@ -55,10 +63,10 @@ class TopicsController < ApplicationController
     @topic.save
 
     # 隱藏不是自己的draft評論
-    if current_user.nil?
-      @comments = @topic.comments.where(:status => "release").order("updated_at desc")
-    else
+    if current_user
       @comments = @topic.comments.where("user_id = ? or status = ?", current_user.id, "release").order("updated_at desc")
+    else
+      @comments = @topic.comments.where(:status => "release").order("updated_at desc")
     end
 
     # 讀取這篇文章是否已經被此使用者收藏
@@ -94,6 +102,7 @@ class TopicsController < ApplicationController
 
   def edit
     if @topic.user != current_user
+      # TODO 6 Define a method in User model to replace this line
       flash[:alert] = "you cannot EDIT others' topics"
       redirect_to topics_path
     end

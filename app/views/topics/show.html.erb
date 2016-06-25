@@ -33,6 +33,7 @@
     <tr>
       <td><%= comment.content %></td>
       <td><%= comment.user.try(:short_name) %></td>
+      <% # TODO 5 Remove every try method %>
       <td><%= link_to "edit", edit_topic_comment_path(@topic, comment) %></td>
       <td><%= link_to "delete", topic_comment_path(@topic, comment), :method => :delete, :data => {:confirm => "Are you sure ?"} %></td>
     </tr>
