@@ -22,5 +22,8 @@ class User < ActiveRecord::Base
     self.role == "admin"
   end
 
+  def show_name
+    self.short_name || ""
+  end
 
 end
