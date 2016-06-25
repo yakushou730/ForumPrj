@@ -35,9 +35,11 @@
       Hi, <%= current_user.short_name %>
       <%= link_to "Log out", destroy_user_session_path, :method => :delete %> |
       <%= link_to "Modify information", edit_registration_path(:user) %>
+      <%#= link_to "facebook登出", destroy_user_session_path, :method => :delete %>
     <% else %>
       <%= link_to "Sign up", new_registration_path(:user) %> |
-      <%= link_to "Log in", new_session_path(:user) %>
+      <%= link_to "Log in", new_session_path(:user) %> |
+      <%= link_to "facebook登入", user_omniauth_authorize_path(:facebook) %>
     <% end %>
   </div>
 </div>
