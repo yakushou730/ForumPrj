@@ -73,7 +73,7 @@ class TopicsController < ApplicationController
   end
 
   def destroy
-    if @topic.user != current_user && current_user != "admin"
+    if @topic.user.isnot_current_user? current_user.id && @topic.user.admin?
       flash[:alert] = "you cannot DESTROY others' topics"
       redirect_to topics_path
     else
@@ -100,7 +100,7 @@ class TopicsController < ApplicationController
   end
 
   def edit
-    if @topic.user != current_user
+    if @topic.user.isnot_current_user? current_user.id #!= current_user
       # TODO 6 Define a method in User model to replace this line
       flash[:alert] = "you cannot EDIT others' topics"
       redirect_to topics_path

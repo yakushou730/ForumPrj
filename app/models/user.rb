@@ -26,4 +26,8 @@ class User < ActiveRecord::Base
     self.short_name || ""
   end
 
+  def isnot_current_user?(log_in_id)
+    self.id != log_in_id
+  end
+
 end
