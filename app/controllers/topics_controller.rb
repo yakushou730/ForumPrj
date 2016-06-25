@@ -124,16 +124,16 @@ class TopicsController < ApplicationController
   end
 
   def favorite
-    #byebug
-    #Topic.find(params[:id]).favorite_user = current_user
-    UserTopicFavorite.create(:user_id => current_user.id, :topic_id => params[:id])
+    Topic.find(params[:id]).favorite_users << current_user
+    #UserTopicFavorite.create(:user_id => current_user.id, :topic_id => params[:id])
+    @is_favorite = UserTopicFavorite.where(:user_id => current_user.id, :topic_id => params[:id]).count == 0 ? false : true
     redirect_to topic_path(params[:id])
   end
 
   def unfavorite
-    #byebug
-    #Topic.find(params[:id]).favorite_user.remove
-    UserTopicFavorite.find_by(:user_id => current_user.id, :topic_id => params[:id]).destroy
+    Topic.find(params[:id]).favorite_users.delete(current_user.id)
+    #UserTopicFavorite.find_by(:user_id => current_user.id, :topic_id => params[:id]).destroy
+    @is_favorite = UserTopicFavorite.where(:user_id => current_user.id, :topic_id => params[:id]).count == 0 ? false : true
     redirect_to topic_path(params[:id])
   end
 
@@ -150,4 +150,5 @@ class TopicsController < ApplicationController
   def params_for_page
     @topics = @topics.page(params[:page]).per(5)
   end
+
 end
