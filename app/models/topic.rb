@@ -15,5 +15,10 @@ class Topic < ActiveRecord::Base
   def has_comment?
     # TODO 2
     # Implement this method
+    if self.comments_count == 0
+      false
+    else
+      true
+    end
   end
 end

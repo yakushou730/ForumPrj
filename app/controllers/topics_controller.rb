@@ -34,7 +34,6 @@ class TopicsController < ApplicationController
         end.uniq
     end
 
-byebug
     # @topics.each do |topic|
     #   @short_names["#{topic.id}"] =
     #     topic.comments.map do |comment|
