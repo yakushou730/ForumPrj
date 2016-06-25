@@ -124,11 +124,16 @@ class TopicsController < ApplicationController
   end
 
   def favorite
-    if params[:favorite] == "true"
-      UserTopicFavorite.create(:user_id => current_user.id, :topic_id => params[:id])
-    else
-      UserTopicFavorite.find_by(:user_id => current_user.id, :topic_id => params[:id]).destroy
-    end
+    #byebug
+    #Topic.find(params[:id]).favorite_user = current_user
+    UserTopicFavorite.create(:user_id => current_user.id, :topic_id => params[:id])
+    redirect_to topic_path(params[:id])
+  end
+
+  def unfavorite
+    #byebug
+    #Topic.find(params[:id]).favorite_user.remove
+    UserTopicFavorite.find_by(:user_id => current_user.id, :topic_id => params[:id]).destroy
     redirect_to topic_path(params[:id])
   end
 

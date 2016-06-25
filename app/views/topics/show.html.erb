@@ -12,9 +12,9 @@
 </ul>
 
 <% if @is_favorite %>
-  <%= link_to "already favorite", favorite_topic_path(@topic, :favorite => false), :class => "btn btn-success" %>
+  <%= link_to "already favorite", unfavorite_topic_path(@topic), :method => :post, :class => "btn btn-success" %>
 <% else %>
-  <%= link_to "favorite", favorite_topic_path(@topic, :favorite => true), :class=> "btn btn-default" %>
+  <%= link_to "favorite", favorite_topic_path(@topic), :method => :post, :class=> "btn btn-default" %>
 <% end %>
 
 <br>

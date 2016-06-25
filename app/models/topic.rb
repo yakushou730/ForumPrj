@@ -8,6 +8,7 @@ class Topic < ActiveRecord::Base
   has_many :categories, :through => :topic_category_relationships
 
   has_many :user_topic_favorites
+  #has_many :favorite_users, :through => :user_topic_favorites, :source => :user
   has_many :users, :through => :user_topic_favorites
   # TODO 3
   # Rename method and find users through this relationship
