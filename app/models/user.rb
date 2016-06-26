@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   has_many :user_topic_favorites
   has_many :topics, :through => :user_topic_favorites
 
+  has_many :subscriptions
+  has_many :subscribed_topics, :through => :subscriptions, :source => :topic
+
   def short_name
     self.email.split("@").first
   end

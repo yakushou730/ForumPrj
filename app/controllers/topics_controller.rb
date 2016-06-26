@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
 
   before_action :authenticate_user!, :except => [:index]
-  before_action :set_topic, :only => [:show, :edit, :update, :destroy]
+  before_action :set_topic, :only => [:show, :edit, :update, :destroy, :subscribe, :unsubscribe]
 
   def index
 
@@ -70,6 +70,8 @@ class TopicsController < ApplicationController
 
     # 讀取這篇文章是否已經被此使用者收藏
     @is_favorite = UserTopicFavorite.where(:user_id => current_user.id, :topic_id => @topic.id).count == 0 ? false : true
+
+    @subscription = @topic.find_my_subscription(current_user)
   end
 
   def destroy
@@ -140,6 +142,26 @@ class TopicsController < ApplicationController
     #UserTopicFavorite.find_by(:user_id => current_user.id, :topic_id => params[:id]).destroy
     @is_favorite = UserTopicFavorite.where(:user_id => current_user.id, :topic_id => params[:id]).count == 0 ? false : true
     redirect_to topic_path(params[:id])
+  end
+
+  def subscribe
+    @subscription = @topic.find_my_subscription(current_user)
+
+    unless @subscription
+      @subscription = Subscription.create(:topic => @topic, :user => current_user)
+    end
+
+    respond_to do |format|
+      format.html {redirect_to :back}
+    end
+  end
+
+  def unsubscribe
+    @subscription = @topic.find_my_subscription(current_user)
+    @subscription.destroy
+    respond_to do |format|
+      format.html {redirect_to :back}
+    end
   end
 
   protected

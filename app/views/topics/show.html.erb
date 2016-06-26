@@ -28,6 +28,14 @@
 <iframe src="https://www.facebook.com/plugins/like.php?href=<%= topic_url(@topic) %>&width=450&layout=standard&action=like&show_faces=true&share=true&height=80&appId=289617371382624" width="450" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 <br>
 
+<% if @subscription %>
+  <%= link_to "Unsubscribe", unsubscribe_topic_path(@topic), :class => "btn btn-default", :method => :post %>
+<% else %>
+  <%= link_to "Subscribe", subscribe_topic_path(@topic), :class => "btn btn-default", :method => :post %>
+<% end %>
+
+<br>
+
 <%= link_to "New Comment", new_topic_comment_path(@topic), :class => "btn btn-primary" %>
 <table class="table">
   <tr>

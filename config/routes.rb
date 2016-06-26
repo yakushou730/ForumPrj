@@ -14,6 +14,9 @@ Rails.application.routes.draw do
       post :unfavorite
       # TODO 4
       # Separate favorite / unfavorite action
+
+      post :subscribe
+      post :unsubscribe
     end
 
   end
