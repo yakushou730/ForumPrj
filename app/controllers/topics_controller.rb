@@ -72,6 +72,8 @@ class TopicsController < ApplicationController
     @is_favorite = UserTopicFavorite.where(:user_id => current_user.id, :topic_id => @topic.id).count == 0 ? false : true
 
     @subscription = @topic.find_my_subscription(current_user)
+
+    @like = @topic.find_my_like(current_user)
   end
 
   def destroy

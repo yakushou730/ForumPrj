@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :topics do
     resources :comments, :controller => "topic_comments"
+    resources :likes
 
     collection do
       get :about

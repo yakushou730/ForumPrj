@@ -19,6 +19,9 @@ class Topic < ActiveRecord::Base
   has_many :subscriptions
   has_many :subscribed_users, :through => :subscriptions, :source => :user
 
+  has_many :likes
+  has_many :liked_users, :through => :likes, :source => :user
+
 
   def has_comment?
     # TODO 2
@@ -32,6 +35,10 @@ class Topic < ActiveRecord::Base
 
   def find_my_subscription(user)
     self.subscriptions.where(:user=> user).first
+  end
+
+  def find_my_like(user)
+    self.likes.where(:user => user).first
   end
 
 end
