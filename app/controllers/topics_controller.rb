@@ -153,14 +153,17 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       format.html {redirect_to :back}
+      format.js
     end
   end
 
   def unsubscribe
     @subscription = @topic.find_my_subscription(current_user)
     @subscription.destroy
+    @subscription = nil
     respond_to do |format|
       format.html {redirect_to :back}
+      format.js
     end
   end
 
