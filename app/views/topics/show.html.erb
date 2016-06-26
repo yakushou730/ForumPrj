@@ -5,6 +5,13 @@
   Conetent : <%= @topic.content %>
 </div>
 
+<% if @topic.pic.exists? %>
+  <%= image_tag(@topic.pic.url(:medium)) %>
+<% else %>
+  No Pic.
+<% end %>
+
+
 <ul>
   <% @topic.categories.each do |category| %>
   <li><%= category.name %></li>
@@ -26,6 +33,7 @@
   <tr>
     <td>Comment</td>
     <td>User</td>
+    <td>Pic</td>
     <td></td>
     <td></td>
   </tr>
@@ -34,6 +42,13 @@
       <td><%= comment.content %></td>
       <% # TODO 5 Remove every try method %>
       <td><%= link_to comment.user.show_name, info_profile_path(comment.user.id) %></td>
+      <td>
+        <% if comment.pic.exists? %>
+          <%= image_tag(comment.pic.url(:medium)) %>
+        <% else %>
+          No Pic.
+        <% end %>
+      </td>
       <td><%= link_to "edit", edit_topic_comment_path(@topic, comment) %></td>
       <td><%= link_to "delete", topic_comment_path(@topic, comment), :method => :delete, :data => {:confirm => "Are you sure ?"} %></td>
     </tr>

@@ -37,6 +37,7 @@ gem 'bootstrap-sass', '~> 3.3.4'
 gem 'devise'
 gem 'gravtastic'
 gem 'omniauth-facebook'
+gem 'paperclip'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

@@ -108,6 +108,11 @@ class TopicsController < ApplicationController
   end
 
   def update
+
+    if params[:_remove_pic] == "1"
+      @topic.pic = nil
+    end
+
     if @topic.update(topic_params)
       flash[:notice] = "update success"
       redirect_to topics_path
@@ -144,7 +149,7 @@ class TopicsController < ApplicationController
   end
 
   def topic_params
-    params.require(:topic).permit(:title, :content, :clicked, :status,:category_ids => [])
+    params.require(:topic).permit(:title, :content, :pic, :clicked, :status,:category_ids => [])
   end
 
   def params_for_page

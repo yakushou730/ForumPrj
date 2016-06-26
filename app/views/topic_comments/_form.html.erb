@@ -12,6 +12,13 @@
 </div>
 
 <div>
+  <%= f.file_field :pic %>
+  <% if @comment.pic.exists? %>
+    <%= check_box_tag "_remove_pic", "1" %> Remove Pic
+ <% end %>
+</div>
+
+<div>
   <%= f.label :status, "Status" %>
   <%= f.select :status, [["draft","draft"],["release","release"]] %>
 </div>

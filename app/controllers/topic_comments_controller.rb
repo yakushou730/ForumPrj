@@ -36,6 +36,10 @@ class TopicCommentsController < ApplicationController
 
     @comment = @topic.comments.find(params[:id])
 
+    if params[:_remove_pic] == "1"
+        @comment.pic = nil
+    end
+
     if @comment.update(comment_param)
       @topic.comment_last_updated_at = @comment.updated_at
       @topic.save
@@ -82,7 +86,7 @@ class TopicCommentsController < ApplicationController
   end
 
   def comment_param
-    params.require(:comment).permit(:content, :status)
+    params.require(:comment).permit(:content, :pic, :status)
   end
 
 
