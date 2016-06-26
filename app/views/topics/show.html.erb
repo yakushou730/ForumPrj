@@ -38,7 +38,7 @@
     <td></td>
   </tr>
   <% @comments.each do |comment| %>
-    <tr>
+    <tr id="comment-<%= comment.id %>">
       <td><%= comment.content %></td>
       <% # TODO 5 Remove every try method %>
       <td><%= link_to comment.user.show_name, info_profile_path(comment.user.id) %></td>
@@ -49,8 +49,8 @@
           No Pic.
         <% end %>
       </td>
-      <td><%= link_to "edit", edit_topic_comment_path(@topic, comment) %></td>
-      <td><%= link_to "delete", topic_comment_path(@topic, comment), :method => :delete, :data => {:confirm => "Are you sure ?"} %></td>
+      <td><%= link_to "edit", edit_topic_comment_path(@topic, comment), :class => "btn btn-default" %></td>
+      <td><%= link_to "delete", topic_comment_path(@topic, comment), :method => :delete, :data => {:confirm => "Are you sure ?"}, :class => "btn btn-default", :remote => true %></td>
     </tr>
   <% end %>
 </table>
