@@ -15,6 +15,8 @@ class ProfilesController < ApplicationController
       @favorites << Topic.find(favorite_topic.topic_id)
     end
 
+    @likes = @profile.liked_topics
+
   end
 
   def edit

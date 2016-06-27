@@ -37,4 +37,14 @@
   <% end %>
 </ul>
 
+<h2>This user's liked topics</h2>
+
+<ul>
+  <% @likes.each do |like| %>
+    <li>
+      <%= link_to like.title, topic_path(like) %>
+    </li>
+  <% end %>
+</ul>
+
 <%= link_to "back to index", topics_path %>
