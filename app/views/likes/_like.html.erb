@@ -1,5 +1,5 @@
 <% if like %>
-  <%= link_to "-1", topic_like_path(@topic, like), :class => "btn btn-warning", :method => :delete %>
+  <%= link_to "-1", topic_like_path(@topic, like), :class => "btn btn-warning", :method => :delete, :remote => true %>
 <% else %>
-  <%= link_to "+1", topic_likes_path(@topic), :class => "btn btn-warning", :method => :post %>
+  <%= link_to "+1", topic_likes_path(@topic), :class => "btn btn-warning", :method => :post, :remote => true %>
 <% end %>
