@@ -41,4 +41,8 @@ class Topic < ActiveRecord::Base
     self.likes.where(:user => user).first
   end
 
+  def likes_count
+    self.liked_users.count
+  end
+
 end
