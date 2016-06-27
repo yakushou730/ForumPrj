@@ -34,6 +34,7 @@ class LikesController < ApplicationController
   protected
 
   def set_topic
+    # 想避免N+1，但加includes(:liked_users)會壞掉
     @topic = Topic.find(params[:topic_id])
   end
 

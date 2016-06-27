@@ -74,6 +74,7 @@ class TopicsController < ApplicationController
     @subscription = @topic.find_my_subscription(current_user)
 
     @like = @topic.find_my_like(current_user)
+
   end
 
   def destroy

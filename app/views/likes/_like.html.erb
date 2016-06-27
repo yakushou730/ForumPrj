@@ -4,4 +4,10 @@
   <%= link_to "+1", topic_likes_path(@topic), :class => "btn btn-warning", :method => :post, :remote => true %>
 <% end %>
 
-<%= person_like_convert(@topic.likes_count) %>
+<%= person_like_convert(@topic.liked_users.count) %>
+
+<p>Who likes this?</p>
+
+<% @topic.liked_users.each do |liked_user| %>
+  <%= link_to liked_user.short_name, info_profile_path(liked_user) %>
+<% end %>
