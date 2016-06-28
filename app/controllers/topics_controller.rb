@@ -21,7 +21,7 @@ class TopicsController < ApplicationController
     end
 
     # 隱藏不是自己的draft文章
-    if current_user
+    if current_user.nil?
       @topics = @topics.where(:status => "release")
     else
       @topics = @topics.where("user_id = ? or status = ?", current_user.id, "release")
