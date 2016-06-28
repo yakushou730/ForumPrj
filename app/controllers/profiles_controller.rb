@@ -3,12 +3,15 @@ class ProfilesController < ApplicationController
   before_action :set_topic, :only => [:edit, :update]
 
   def info
-    @profile = User.find(params[:id])
-    @topics = Topic.where("user_id = #{params[:id]}")
-    @comments = Comment.where("user_id = #{params[:id]}")
+    @profile = User.where(["email like ?", "%#{params[:id]}@%"]).first
+
+    #@profile = User.find(params[:id])
+    #@profile = User.find(params[:id])
+    @topics = Topic.where(:user_id => @profile.id )
+    @comments = Comment.where(:user_id => @profile.id)
 
     favorite_topic_ids = []
-    favorite_topics = UserTopicFavorite.where(:user_id=> params[:id])
+    favorite_topics = UserTopicFavorite.where(:user_id=> @profile.id)
 
     @favorites = []
     favorite_topics.each do |favorite_topic|

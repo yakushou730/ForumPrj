@@ -52,7 +52,7 @@
     <tr id="comment-<%= comment.id %>">
       <td><%= comment.content %></td>
       <% # TODO 5 Remove every try method %>
-      <td><%= link_to comment.user.show_name, info_profile_path(comment.user.id) %></td>
+      <td><%= link_to comment.user.show_name, info_profile_path(comment.user.short_name) %></td>
       <td>
         <% if comment.pic.exists? %>
           <%= image_tag(comment.pic.url(:medium)) %>

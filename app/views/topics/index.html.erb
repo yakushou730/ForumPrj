@@ -31,7 +31,7 @@
   <% @topics.each do |topic| %>
     <tr>
       <td><%= link_to topic.title, topic_path(topic) %></td>
-      <td><%= link_to topic.user.show_name, info_profile_path(:id => topic.user.id) %></td>
+      <td><%= link_to topic.user.show_name, info_profile_path(:id => topic.user.short_name) %></td>
       <td><%= topic.clicked %></td>
 
       <td><%= topic.comments_count %></td>

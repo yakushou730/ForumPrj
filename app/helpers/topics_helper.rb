@@ -8,10 +8,10 @@ module TopicsHelper
     flag = false
     user_list.each do |user|
       if flag == false
-        total_link_tag = link_to(user.values.to_s[2...-2], info_profile_path(user.keys)) + "    "
+        total_link_tag = link_to(user.values.to_s[2...-2], info_profile_path(user.values)) + "    "
         flag = true
       else
-        total_link_tag += link_to(user.values.to_s[2...-2], info_profile_path(user.keys)) + "    "
+        total_link_tag += link_to(user.values.to_s[2...-2], info_profile_path(user.values)) + "    "
       end
 
     end

@@ -9,5 +9,5 @@
 <p>Who likes this?</p>
 
 <% @topic.liked_users.each do |liked_user| %>
-  <%= link_to liked_user.short_name, info_profile_path(liked_user) %>
+  <%= link_to liked_user.short_name, info_profile_path(liked_user.short_name) %>
 <% end %>
