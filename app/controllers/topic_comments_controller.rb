@@ -16,7 +16,13 @@ class TopicCommentsController < ApplicationController
       @topic.comment_last_updated_at = @comment.updated_at
       @topic.save
       flash[:notice] = "create success"
-      redirect_to topic_path(@topic)
+
+      respond_to do |format|
+        format.html {redirect_to topic_path(@topic)}
+        format.js
+      end
+
+
     else
       #redirect_to topic_path(@topic)
       #render 'new'
@@ -64,7 +70,12 @@ class TopicCommentsController < ApplicationController
       @topic.comment_last_updated_at = @comment.updated_at
       @topic.save
       flash[:notice] = "update success"
-      redirect_to topic_path(@topic)
+
+      respond_to do |format|
+        format.html {redirect_to topic_path(@topic)}
+        format.js
+      end
+
     else
 
       # 以下這段有疑慮

@@ -1,0 +1,15 @@
+var commentItem = $('<tr id="comment-<%= @comment.id %>"></tr>');
+var content = $('<td><%= @comment.content %></td>');
+var user = $('<td><%= link_to @comment.user.short_name, info_profile_path(@comment.user.short_name) %></td>');
+var pic;
+<% if @comment.pic.exists? %>
+  pic = $('<td><%= image_tag(@comment.pic.url(:medium)) %></td>');
+<% else %>
+  pic = $('<td>No Pic.</td>');
+<% end %>
+var edit = $('<td><%= link_to "edit", topic_path(@topic, :cid => @comment.id), :class => "btn btn-default" %></td>');
+var del = $('<td><%= link_to "delete", topic_comment_path(@topic, @comment), :method => :delete, :data => {:confirm => "Are you sure ?"}, :class => "btn btn-default", :remote => true %></td>');
+
+
+commentItem.append(content).append(user).append(pic).append(edit).append(del);
+$('.comment-list').prepend(commentItem);

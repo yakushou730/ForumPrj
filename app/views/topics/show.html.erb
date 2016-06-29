@@ -47,29 +47,31 @@
 
 <%= link_to "New Comment", topic_path(@topic), :class => "btn btn-primary" %>
 <table class="table">
-  <tr>
+  <thead>
     <td>Comment</td>
     <td>User</td>
     <td>Pic</td>
     <td></td>
     <td></td>
-  </tr>
-  <% @comments.each do |comment| %>
-    <tr id="comment-<%= comment.id %>">
-      <td><%= comment.content %></td>
-      <% # TODO 5 Remove every try method %>
-      <td><%= link_to comment.user.show_name, info_profile_path(comment.user.short_name) %></td>
-      <td>
-        <% if comment.pic.exists? %>
-          <%= image_tag(comment.pic.url(:medium)) %>
-        <% else %>
-          No Pic.
-        <% end %>
-      </td>
-      <td><%= link_to "edit", topic_path(@topic, :cid => comment.id), :class => "btn btn-default" %></td>
-      <td><%= link_to "delete", topic_comment_path(@topic, comment), :method => :delete, :data => {:confirm => "Are you sure ?"}, :class => "btn btn-default", :remote => true %></td>
-    </tr>
-  <% end %>
+  </thead>
+  <tbody class="comment-list">
+    <% @comments.each do |comment| %>
+      <tr id="comment-<%= comment.id %>">
+        <td><%= comment.content %></td>
+        <% # TODO 5 Remove every try method %>
+        <td><%= link_to comment.user.show_name, info_profile_path(comment.user.short_name) %></td>
+        <td>
+          <% if comment.pic.exists? %>
+            <%= image_tag(comment.pic.url(:medium)) %>
+          <% else %>
+            No Pic.
+          <% end %>
+        </td>
+        <td><%= link_to "edit", topic_path(@topic, :cid => comment.id), :class => "btn btn-default" %></td>
+        <td><%= link_to "delete", topic_comment_path(@topic, comment), :method => :delete, :data => {:confirm => "Are you sure ?"}, :class => "btn btn-default", :remote => true %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
 
