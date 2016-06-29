@@ -3,7 +3,7 @@ class ProfilesController < ApplicationController
   before_action :set_topic, :only => [:edit, :update]
 
   def info
-    @profile = User.where(["email like ?", "%#{params[:id]}@%"]).first
+    @profile = User.where(["email like ?", "#{params[:id]}@%"]).first
 
     #@profile = User.find(params[:id])
     #@profile = User.find(params[:id])

@@ -36,8 +36,14 @@
   <%= render :partial => "likes/like", :locals => { :like => @like } %>
 </div>
 
+<hr>
 
-<br>
+<div id="comment-block">
+  <h4>Comment area :</h4>
+  <%= render :partial => "topic_comments/comment_block", :locals => {:topic => @topic, :comment => @comment} %>
+</div>
+
+<hr>
 
 <%= link_to "New Comment", new_topic_comment_path(@topic), :class => "btn btn-primary" %>
 <table class="table">
@@ -60,7 +66,7 @@
           No Pic.
         <% end %>
       </td>
-      <td><%= link_to "edit", edit_topic_comment_path(@topic, comment), :class => "btn btn-default" %></td>
+      <td><%= link_to "edit", topic_path(@topic, :cid => comment.id), :class => "btn btn-default" %></td>
       <td><%= link_to "delete", topic_comment_path(@topic, comment), :method => :delete, :data => {:confirm => "Are you sure ?"}, :class => "btn btn-default", :remote => true %></td>
     </tr>
   <% end %>

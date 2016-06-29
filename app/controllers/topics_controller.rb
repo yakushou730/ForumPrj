@@ -75,6 +75,13 @@ class TopicsController < ApplicationController
 
     @like = @topic.find_my_like(current_user)
 
+    if params[:cid]
+      @comment = Comment.find(params[:cid])
+    else
+      @comment = Comment.new
+    end
+
+
   end
 
   def destroy

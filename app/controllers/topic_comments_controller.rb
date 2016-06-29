@@ -18,7 +18,27 @@ class TopicCommentsController < ApplicationController
       flash[:notice] = "create success"
       redirect_to topic_path(@topic)
     else
-      render 'new'
+      #redirect_to topic_path(@topic)
+      #render 'new'
+
+      # 以下這段有疑慮
+      # Q1 : 和 topic的show action重複性太高，可是不加的話重新render topic show頁面會壞掉
+
+      # 隱藏不是自己的draft評論
+      if current_user
+        @comments = @topic.comments.where("user_id = ? or status = ?", current_user.id, "release").order("updated_at desc")
+      else
+        @comments = @topic.comments.where(:status => "release").order("updated_at desc")
+      end
+
+      # 讀取這篇文章是否已經被此使用者收藏
+      @is_favorite = UserTopicFavorite.where(:user_id => current_user.id, :topic_id => @topic.id).count == 0 ? false : true
+
+      @subscription = @topic.find_my_subscription(current_user)
+
+      @like = @topic.find_my_like(current_user)
+
+      render 'topics/show'
     end
   end
 
@@ -46,7 +66,26 @@ class TopicCommentsController < ApplicationController
       flash[:notice] = "update success"
       redirect_to topic_path(@topic)
     else
-      render 'edit'
+
+      # 以下這段有疑慮
+      # Q1 : 和 topic的show action重複性太高，可是不加的話重新render topic show頁面會壞掉
+
+      # 隱藏不是自己的draft評論
+      if current_user
+        @comments = @topic.comments.where("user_id = ? or status = ?", current_user.id, "release").order("updated_at desc")
+      else
+        @comments = @topic.comments.where(:status => "release").order("updated_at desc")
+      end
+
+      # 讀取這篇文章是否已經被此使用者收藏
+      @is_favorite = UserTopicFavorite.where(:user_id => current_user.id, :topic_id => @topic.id).count == 0 ? false : true
+
+      @subscription = @topic.find_my_subscription(current_user)
+
+      @like = @topic.find_my_like(current_user)
+
+      render 'topics/show'
+      #render 'edit'
     end
   end
 
