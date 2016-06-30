@@ -124,6 +124,8 @@ class TopicCommentsController < ApplicationController
 
       flash[:alert] = "delete success"
 
+      @new_comment = Comment.new
+
       respond_to do |format|
         format.html {redirect_to topic_path(@topic)}
         format.js

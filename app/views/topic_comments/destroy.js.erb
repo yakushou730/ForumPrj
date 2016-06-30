@@ -1,1 +1,3 @@
+//$("#comment-block").html("<%=j render :partial => "comment_block_after_destroy", :locals => {:topic => @topic, :comment => @new_comment} %>");
+$("#comment-block").html("<%=j render :partial => "comment_block_after_destroy" %>");
 $("#comment-<%= @comment.id %>").remove();

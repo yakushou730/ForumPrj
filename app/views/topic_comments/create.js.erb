@@ -7,7 +7,7 @@ var pic;
 <% else %>
   pic = $('<td>No Pic.</td>');
 <% end %>
-var edit = $('<td><%= link_to "edit", topic_path(@topic, :cid => @comment.id), :class => "btn btn-default" %></td>');
+var edit = $('<td><%= link_to "edit", topic_path(@topic, :cid => @comment.id), :class => "btn btn-default", :remote => true %></td>');
 var del = $('<td><%= link_to "delete", topic_comment_path(@topic, @comment), :method => :delete, :data => {:confirm => "Are you sure ?"}, :class => "btn btn-default", :remote => true %></td>');
 
 

@@ -45,7 +45,7 @@
 
 <hr>
 
-<%= link_to "New Comment", topic_path(@topic), :class => "btn btn-primary" %>
+<%= link_to "New Comment", topic_path(@topic), :class => "btn btn-primary", :remote => true %>
 <table class="table">
   <thead>
     <td>Comment</td>
@@ -67,7 +67,7 @@
             No Pic.
           <% end %>
         </td>
-        <td><%= link_to "edit", topic_path(@topic, :cid => comment.id), :class => "btn btn-default" %></td>
+        <td><%= link_to "edit", topic_path(@topic, :cid => comment.id), :class => "btn btn-default", :remote => true %></td>
         <td><%= link_to "delete", topic_comment_path(@topic, comment), :method => :delete, :data => {:confirm => "Are you sure ?"}, :class => "btn btn-default", :remote => true %></td>
       </tr>
     <% end %>
