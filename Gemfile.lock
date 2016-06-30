@@ -161,6 +161,7 @@ GEM
     rake (11.2.2)
     rdoc (4.2.2)
       json (~> 1.4)
+    remotipart (1.2.1)
     responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
     sass (3.4.22)
@@ -216,6 +217,7 @@ DEPENDENCIES
   pg
   rails (= 4.2.6)
   rails_12factor
+  remotipart
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring

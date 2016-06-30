@@ -38,6 +38,7 @@ gem 'devise'
 gem 'gravtastic'
 gem 'omniauth-facebook'
 gem 'paperclip'
+gem 'remotipart'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
