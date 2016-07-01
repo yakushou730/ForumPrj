@@ -1,3 +1,12 @@
+<%= content_for :head do %>
+  <%# <meta content=@topic.title property="og:title"> %>
+  <%= tag(:meta, :content => @topic.title, :property => "og:title") %>
+  <%# <meta content="article" property="og:type"> %>
+  <%= tag(:meta, :content => "article", :property => "og:type") %>
+  <%# <meta content=topic_url(@topic) property="og:url"> %>
+  <%= tag(:meta, :content => topic_url(@topic), :property => ":og:url") %>
+<% end %>
+
 <div>
   Title : <%= @topic.title %>
 </div>
