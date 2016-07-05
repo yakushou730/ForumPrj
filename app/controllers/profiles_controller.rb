@@ -21,6 +21,8 @@ class ProfilesController < ApplicationController
 
     @likes = @profile.liked_topics
 
+    @be_friend = current_user.friendships.find_by_friend_id(@profile.id)
+
   end
 
   def edit

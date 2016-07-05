@@ -34,6 +34,8 @@ Rails.application.routes.draw do
 
   end
 
+  resources :friendships
+
   #get '/profile/:id' => 'profiles#info', :as => "profile_info"
   #get 'edit/:id' => 'profiles#edit', :as => "profile_edit"
   #get 'update/:id'

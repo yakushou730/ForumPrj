@@ -1,3 +1,7 @@
+<div class="add-friend-block">
+  <%= render :partial => "friendships/display", :locals => { :friend => @profile } %>
+</div>
+
 <%= image_tag @profile.gravatar_url %>
 <h1><%= @profile.try(:short_name) %></h3>
 <h2>Email : <%= @profile.email %></h1>

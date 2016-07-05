@@ -1,0 +1,7 @@
+<% unless @profile.is_current_user?(current_user.id) %>
+  <% if @be_friend %>
+    <%= link_to "Remove friend", friendship_path(:friend_id => friend.id), :method => :delete, :class => "btn btn-danger"  %>
+  <% else %>
+    <%= link_to "Add friend", friendships_path(:friend_id => friend.id), :method => :post, :class => "btn btn-primary"  %>
+  <% end %>
+<% end %>
