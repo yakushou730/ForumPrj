@@ -51,4 +51,16 @@
   <% end %>
 </ul>
 
+<h2>The friends this user added</h2>
+
+<ul>
+  <% @friends.each do |friend| %>
+    <li>
+      <%= link_to friend.short_name, info_profile_path(friend.short_name) %>
+    </li>
+  <% end %>
+</ul>
+
+
+
 <%= link_to "back to index", topics_path %>

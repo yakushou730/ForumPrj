@@ -23,6 +23,8 @@ class ProfilesController < ApplicationController
 
     @be_friend = current_user.friendships.find_by_friend_id(@profile.id)
 
+    @friends = @profile.friends
+
   end
 
   def edit
