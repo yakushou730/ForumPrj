@@ -1,0 +1,17 @@
+<table class="table">
+  <thead>
+    <tr>
+      <td><h3>Friend Request</h3></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @friendship_asks.each do |ask| %>
+      <tr>
+        <td><h4><%= ask.user.short_name %></h4></td>
+        <td><%= link_to "Accept", accept_friendship_path(ask.user), :class => "btn btn-success" %></td>
+        <td><%= link_to "Cancel", cancel_friendship_path(ask.user), :class => "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>

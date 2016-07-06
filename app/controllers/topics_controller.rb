@@ -55,6 +55,8 @@ class TopicsController < ApplicationController
 
     @categories = Category.all
 
+    @friendship_asks = []
+    @friendship_asks = current_user.inverse_friendships.where(:status => "request") if current_user
   end
 
   def show

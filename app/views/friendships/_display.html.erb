@@ -1,6 +1,11 @@
 <% unless @profile.is_current_user?(current_user.id) %>
   <% if @be_friend %>
-    <%= link_to "Remove friend", friendship_path(friend, :friend_id => friend.id), :method => :delete, :class => "btn btn-danger", :remote => true  %>
+    <% if @be_friend.is_request? %>
+      <%= link_to "Requesting...", "#", :class => "btn btn-success disabled", :remote => true  %>
+    <% elsif @be_friend.is_accept? %>
+      <%= link_to "Remove friend", friendship_path(friend, :friend_id => friend.id), :method => :delete, :class => "btn btn-danger", :remote => true  %>
+    <% end %>
+
   <% else %>
     <%= link_to "Add friend", friendships_path(:friend_id => friend.id), :method => :post, :class => "btn btn-primary", :remote => true  %>
   <% end %>

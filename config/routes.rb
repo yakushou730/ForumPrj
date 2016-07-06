@@ -34,7 +34,13 @@ Rails.application.routes.draw do
 
   end
 
-  resources :friendships
+  resources :friendships do
+    member do
+      get :accept
+      get :cancel
+    end
+  end
+
 
   #get '/profile/:id' => 'profiles#info', :as => "profile_info"
   #get 'edit/:id' => 'profiles#edit', :as => "profile_edit"
