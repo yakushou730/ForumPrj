@@ -17,9 +17,18 @@
 <% if @topic.pic.exists? %>
   <%= image_tag(@topic.pic.url(:medium)) %>
 <% else %>
-  No Pic.
+    No Pic.
 <% end %>
+<br>
 
+<% if @topic.photos.exists? %>
+  <% @topic.photos.each do |image| %>
+    <%= image_tag image.photo.url(:medium) %>
+  <% end %>
+<% else %>
+  No Photos.
+<% end %>
+<br>
 
 <ul>
   <% @topic.categories.each do |category| %>

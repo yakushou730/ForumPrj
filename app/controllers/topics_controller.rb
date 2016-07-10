@@ -102,9 +102,15 @@ class TopicsController < ApplicationController
   end
 
   def create
+    byebug
     @topic = Topic.new(topic_params)
     @topic.user = current_user
     if @topic.save
+      if params[:photos]
+        params[:photos].each do |photo|
+          @topic.photos.create(:photo => photo)
+        end
+      end
       flash[:notice] = "create success"
       redirect_to topics_path
     else
@@ -126,7 +132,20 @@ class TopicsController < ApplicationController
       @topic.pic = nil
     end
 
+    if params[:_remove_photos] == "1"
+      @topic.photos.destroy_all
+    end
+
+
+
     if @topic.update(topic_params)
+
+      if params[:photos]
+        params[:photos].each do |photo|
+          @topic.photos.create(:photo => photo)
+        end
+      end
+
       flash[:notice] = "update success"
       redirect_to topics_path
     else
@@ -185,7 +204,7 @@ class TopicsController < ApplicationController
   end
 
   def topic_params
-    params.require(:topic).permit(:title, :content, :pic, :clicked, :status,:category_ids => [])
+    params.require(:topic).permit(:title, :content, :pic, :photos, :clicked, :status,:category_ids => [])
   end
 
   def params_for_page

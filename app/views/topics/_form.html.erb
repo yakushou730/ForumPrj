@@ -28,6 +28,14 @@
 </div>
 
 <div>
+  <%= f.label :photos %>
+  <%= file_field_tag "photos[]", :type => :file, :multiple => true %>
+  <% if @topic.photos.exists? %>
+    <%= check_box_tag "_remove_photos", "1" %> Remove Photos
+  <% end %>
+</div>
+
+<div>
   <%= f.label :status, "Status" %>
   <%= f.select :status, [["draft","draft"],["release","release"]] %>
 </div>

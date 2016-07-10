@@ -22,6 +22,7 @@ class Topic < ActiveRecord::Base
   has_many :likes
   has_many :liked_users, :through => :likes, :source => :user
 
+  has_many :photos, :dependent => :destroy
 
   def has_comment?
     # TODO 2
