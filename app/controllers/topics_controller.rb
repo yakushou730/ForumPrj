@@ -102,7 +102,6 @@ class TopicsController < ApplicationController
   end
 
   def create
-    byebug
     @topic = Topic.new(topic_params)
     @topic.user = current_user
     if @topic.save
